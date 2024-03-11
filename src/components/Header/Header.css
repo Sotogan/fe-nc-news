@@ -1,0 +1,14 @@
+#header-container {
+    color:gold;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    border-radius: 4px;
+    border: 1px solid rgb(230, 120, 17);
+    padding: 10px;
+    background-color: forestgreen; 
+    scroll-margin-top: 100rem;
+    
+}

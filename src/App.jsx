@@ -5,9 +5,10 @@ import Home from './components/Home/Home'
 import Articles from './components/Articles/Articles'
 import {Routes,Route} from 'react-router-dom' 
 import SingleArticle from './components/SingleArticle/SingleArticle'
+import Comments from './components/Comments/Comments'
 
 function App() {
-  const [article,setArticle]=useState([])
+
 
 
   return (
@@ -15,8 +16,9 @@ function App() {
     <Header />
   <Routes>
      <Route path='/' element={<Home/>}/>
-     <Route path='/articles' element={<Articles article={article} setArticle={setArticle}/>}/>
-     <Route path={`/articles/:article_id`} element={<SingleArticle article={article}/>}/>
+     <Route path='/articles' element={<Articles />}/>
+     <Route path={`/articles/:article_id/`} element={<SingleArticle />}/>
+     <Route path={`/articles/:article_id/comments`} element={<Comments />}/>
      </Routes>
    
     

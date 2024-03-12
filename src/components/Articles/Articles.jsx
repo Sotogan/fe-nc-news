@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 
-const Articles=({article,setArticle})=>{
+const Articles=()=>{
   const [allArticles,setAllArticles]=useState([])
   const [isLoading,setIsLoading]=useState(true)
  
@@ -31,8 +31,7 @@ return (
       {allArticles.map((article, index) => (
         <div key={index} className="article-card">
           <img src={article.article_img_url} alt={article.title} /> 
-          <Link to={`/articles/${article.article_id}`  }>{article.title}</Link>
-               
+          <Link to={`/articles/${article.article_id}`  }>{article.title}</Link>     
           <p>{article.author}</p>
           <span>Votes: {article.votes}</span> 
           <span>Comments: {article.comment_count}</span> 

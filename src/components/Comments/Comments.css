@@ -1,0 +1,39 @@
+#articles-container {
+    display: flex;
+    flex-wrap:nowrap
+    gap: 20px;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  
+  .xarticle-card {
+    width: 1700px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: #f7efef;
+  }
+  
+  .article-card img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .xarticle-card h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .xarticle-card p {
+    margin-top: 8px;
+    color: #666;
+  }
+  
+  .xarticle-card span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #00bcd4;
+  }
+  

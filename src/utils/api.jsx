@@ -5,10 +5,21 @@ const newsApi = axios.create({
 
     })
 
- export  const  getArticles=()=>{
-
-    return newsApi.get("/articles").then((response) => {
+ export  const  getArticles=(article_id= undefined)=>{
+    
+    if (article_id === undefined){
+       return newsApi.get("/articles").then((response) => {
             return response.data.articles
       });
+    }
+    else{
+        return newsApi
+         .get(`/articles/${article_id}`).then((response)=>{
+           
+            return response.data.article
+         })
+
+
+    }
 
  }

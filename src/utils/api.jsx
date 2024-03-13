@@ -27,3 +27,15 @@ const newsApi = axios.create({
   })
 
  }
+
+ export const patchArticle=(article_id)=>{
+
+   return newsApi.patch(`/articles/${article_id}`,{vote_inc:1})
+   .then((response)=>{
+    return response.data.update[0].votes
+    
+
+   })
+
+
+ }

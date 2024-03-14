@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  patchArticle } from '../../utils/api';
+import {  patchArticle } from '../../utils/api.js';
 import { useParams } from "react-router-dom"
 
 

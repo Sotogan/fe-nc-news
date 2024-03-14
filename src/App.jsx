@@ -6,6 +6,7 @@ import Articles from './components/Articles/Articles'
 import {Routes,Route} from 'react-router-dom' 
 import SingleArticle from './components/SingleArticle/SingleArticle'
 import Comments from './components/Comments/Comments'
+import Topics from './components/Topics/Topics'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
      <Route path='/articles' element={<Articles />}/>
      <Route path={`/articles/:article_id/`} element={<SingleArticle />}/>
      <Route path={`/articles/:article_id/comments`} element={<Comments />}/>
+     <Route path={`/articles/topics`} element={<Topics/>}/>
      </Routes>
    
     

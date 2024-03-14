@@ -6,7 +6,9 @@ const newsApi = axios.create({
     })
 
  export  const  getArticles=(article_id= undefined)=>{
-    if (article_id === undefined){
+ 
+  
+  if (article_id === undefined){
        return newsApi.get("/articles").then((response) => {
             return response.data.articles
       });
@@ -47,5 +49,21 @@ const newsApi = axios.create({
 
 export const deleteComment=(comment_id)=>{
  return newsApi.delete(`/comments/${comment_id}`)
+
+}
+
+export const getTopics=()=>{
+  return newsApi.get('/topics')
+  .then((response)=>{
+    return response.data.topics
+  })
+}
+export const getArticlesByTopic=(topic)=>{
+  return newsApi.get(`/articles?topic=${topic}`)
+  .then((response)=>{
+    return response.data.articles
+  })
+
+ 
 
 }

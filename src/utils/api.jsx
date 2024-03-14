@@ -34,8 +34,13 @@ const newsApi = axios.create({
    .then((response)=>{
     return response.data.update[0].votes
     
-
-   })
-
-
- }
+})
+}
+ export const addComment = (article_id,newComment,user) => {
+  return newsApi
+  .post(`/articles/${article_id}/comments`, {body:newComment,username:user })
+    .then((response) => {
+      return response
+    
+    });
+};

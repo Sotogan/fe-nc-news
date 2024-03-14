@@ -44,3 +44,8 @@ const newsApi = axios.create({
     
     });
 };
+
+export const deleteComment=(comment_id)=>{
+ return newsApi.delete(`/comments/${comment_id}`)
+
+}

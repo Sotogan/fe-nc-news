@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { addComment } from "../../utils/api";
+import { addComment } from "../../utils/api.js";
 import{useState} from 'react'
 
 const PostComment=({setComments,comments})=>{
@@ -12,13 +12,13 @@ const PostComment=({setComments,comments})=>{
       
         event.preventDefault();
       if (!username) {
-        alert('Please enter your username.');
+        alert('Please enter a valid username.');
       }
        setComments((currComments)=>{
         const id= currComments[currComments.length-1].comment_id +1
-        console.log(id)
+
         const commentToAdd={comment_id:id,body:commentBody,user:username,votes:0,created_at: 'Just Now'}
-        return [...currComments,commentToAdd]  
+        return [commentToAdd,...currComments]  
       
        })
        setCommentBody('')

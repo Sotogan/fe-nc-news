@@ -2,10 +2,9 @@
 import { useEffect,useState } from "react"
 import { useParams } from "react-router-dom"
 import {getArticles,getComments} from '../../utils/api'
-import {Routes,Route} from 'react-router-dom'
 import Comments from '../Comments/Comments.jsx'
-import {Link} from 'react-router-dom'
 import VoteButton from "../VoteButton./VoteButton.jsx"
+import PostComment from "../PostComment/PostComment.jsx"
 
  
 const SingleArticle=()=>{
@@ -42,6 +41,7 @@ const SingleArticle=()=>{
             <h3>{article.title}</h3>
             <p>{article.body}</p>
             <VoteButton initVotes={initVotes} />
+            <PostComment comments={comments} setComments={setComments}/>
             <button onClick={()=>handleClick(article.article_id,article.votes)}>show comments</button>
        
           </div>

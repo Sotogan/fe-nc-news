@@ -9,6 +9,8 @@ import Comments from './components/Comments/Comments'
 import Topics from './components/Topics/Topics'
 
 function App() {
+  const [sortBy, setSortBy] = useState('created_at');
+  const [sortOrder, setSortOrder] = useState('desc');
 
 
 
@@ -17,10 +19,10 @@ function App() {
     <Header />
   <Routes>
      <Route path='/' element={<Home/>}/>
-     <Route path='/articles' element={<Articles />}/>
+     <Route path='/articles' element={<Articles sortBy={sortBy} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder} />}/>
      <Route path={`/articles/:article_id/`} element={<SingleArticle />}/>
      <Route path={`/articles/:article_id/comments`} element={<Comments />}/>
-     <Route path={`/articles/topics`} element={<Topics/>}/>
+     <Route path={`/articles/topics`} element={<Topics sortBy={sortBy} setSortBy={setSortBy} sortOrder={sortOrder} setSortOrder={setSortOrder}/>}/>
      </Routes>
    
     

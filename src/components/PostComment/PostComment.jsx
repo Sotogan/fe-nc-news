@@ -35,7 +35,7 @@ addComment(article_id,commentBody,username).then(()=>{
 
     return (
       <form onSubmit={handleSubmit}>
-        <label >
+        <label > enter User:
          <input type="text"
           value={username}
           onChange={(event) =>{
@@ -43,7 +43,7 @@ addComment(article_id,commentBody,username).then(()=>{
           setUsername(event.target.value)
           
            }} ></input></label>
-           <label>
+           <label> Comment Here:
                 <input
           value={commentBody}
           type='text'

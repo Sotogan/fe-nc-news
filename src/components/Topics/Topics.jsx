@@ -2,7 +2,11 @@ import {useState,useEffect} from 'react'
 import{getTopics,getArticlesByTopic} from '../../utils/api.js'
 import {Link} from "react-router-dom"
 import './Topics.css'
-const Topics=()=>{
+import { sortArticles } from '../../utils/sort_by.js'
+
+
+
+const Topics=({sortBy, setSortBy , sortOrder ,setSortOrder})=>{
     const [topics, setTopics] = useState([]);
     const [ArticlesByTopic,setArticlesByTopic]=useState([])
 
@@ -19,6 +23,19 @@ const Topics=()=>{
           setArticlesByTopic(articles);
         });
       };
+      const handleSort = (criteria) => {
+        if (sortBy === criteria) {
+          setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+          setSortBy(criteria);
+          setSortOrder('desc');
+        }
+      };
+    
+
+
+      const sortedArticles = sortArticles(ArticlesByTopic, sortBy, sortOrder);
+
   
     return (
       <>
@@ -34,7 +51,13 @@ const Topics=()=>{
         </div>
   
         <div id="article-container">
-        {ArticlesByTopic.map((article) => {
+        <div className="sort-buttons">
+        <button onClick={() => handleSort('created_at')}>Sort by Date</button>
+        <button onClick={() => handleSort('comments')}>Sort by Comments</button>
+        <button onClick={() => handleSort('votes')}>Sort by Votes</button>
+        <button onClick={() => handleSort(sortBy)}>Toggle Order</button>
+      </div>
+        {sortedArticles.map((article) => {
           return (
             <div key={article.article_id} id="article-container" className="article-card">
           <img src={article.article_img_url} alt={article.title} /> 

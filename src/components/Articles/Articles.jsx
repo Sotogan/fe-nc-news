@@ -3,7 +3,7 @@ import { getArticles } from '../../utils/api';
 import './Articles.css';
 import { Link } from 'react-router-dom';
 import { sortArticles } from "../../utils/sort_by.js";
-
+import {format} from 'date-fns'
 const Articles = ({sortBy,setSortBy,sortOrder,setSortOrder}) => {
   const [allArticles, setAllArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +57,7 @@ const Articles = ({sortBy,setSortBy,sortOrder,setSortOrder}) => {
           <p>{article.author}</p>
           <span>Votes: {article.votes}</span> 
           <span>Comments: {article.comment_count}</span> 
-          <p>{article.created_at}</p>
+          <p>{format(article.created_at,'dd/MM/yyyy')}</p>
         </div>
       ))}
     </div>

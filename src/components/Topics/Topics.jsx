@@ -4,6 +4,7 @@ import {Link,useSearchParams} from "react-router-dom"
 import './Topics.css'
 import { sortArticles } from '../../utils/sort_by.js'
 import ErrorPage from '../ErrorPage/ErrorPage.jsx'
+import {format} from 'date-fns'
 
 
 const Topics=({sortBy, setSortBy , sortOrder ,setSortOrder,error,setError})=>{
@@ -95,7 +96,7 @@ const Topics=({sortBy, setSortBy , sortOrder ,setSortOrder,error,setError})=>{
           <p>{article.author}</p>
           <span>Votes: {article.votes}</span> 
           <span>Comments: {article.comment_count}</span> 
-          <p>{article.created_at}</p>
+          <p>{format(article.created_at,'dd/MM/yyyy')}</p>
             </div>  
           );
         })}

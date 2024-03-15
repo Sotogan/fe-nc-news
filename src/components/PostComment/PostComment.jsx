@@ -11,16 +11,21 @@ const PostComment=({setComments,comments})=>{
     const handleSubmit = (event) => {
       
         event.preventDefault();
-      if (!username) {
+        if(!commentBody){
+          alert('Please enter a comment')
+        }else{
+      if (username!== 'tickle122' && username !== 'grumpy19' && username !=='happyamy2016 '&& username !=='cooljmessy' && username !=='jessjelly') {
         alert('Please enter a valid username.');
       }
+      else{
+      
        setComments((currComments)=>{
         const id= currComments[currComments.length-1].comment_id +1
 
         const commentToAdd={comment_id:id,body:commentBody,user:username,votes:0,created_at: 'Just Now'}
         return [commentToAdd,...currComments]  
       
-       })
+       })}}
        setCommentBody('')
        setUsername('')
       

@@ -1,27 +1,50 @@
 import {useState,useEffect} from 'react'
 import{getTopics,getArticlesByTopic} from '../../utils/api.js'
-import {Link} from "react-router-dom"
+import {Link,useSearchParams} from "react-router-dom"
 import './Topics.css'
 import { sortArticles } from '../../utils/sort_by.js'
+import ErrorPage from '../ErrorPage/ErrorPage.jsx'
 
 
-
-const Topics=({sortBy, setSortBy , sortOrder ,setSortOrder})=>{
+const Topics=({sortBy, setSortBy , sortOrder ,setSortOrder,error,setError})=>{
     const [topics, setTopics] = useState([]);
     const [ArticlesByTopic,setArticlesByTopic]=useState([])
-
-  
+    const [searchParams,setSearchParams]=useSearchParams()
+   
     useEffect(() => {
-      getTopics().then((topics) => {
-        setTopics(topics);
-        
-      });
+    
+      setError(null)
     }, []);
-    const handleClick = (topic) => {
+  
+   
+    useEffect(() => {
+    
+      getTopics().then((topics) => {
         
+        setTopics(topics)
+                
+      })
+    }, []);
+
+    useEffect(() => {
+      const topic = searchParams.get('topic');
+      if (topic) {
         getArticlesByTopic(topic).then((articles) => {
           setArticlesByTopic(articles);
-        });
+        }).catch((err) => {
+          setError(err);
+            })
+             }
+    }, [searchParams]);
+
+
+    const handleClick = (topic) => {
+      
+        getArticlesByTopic(topic).then((articles) => {
+          setArticlesByTopic(articles);
+           setSearchParams({ topic: topic });
+           
+        })
       };
       const handleSort = (criteria) => {
         if (sortBy === criteria) {
@@ -31,11 +54,18 @@ const Topics=({sortBy, setSortBy , sortOrder ,setSortOrder})=>{
           setSortOrder('desc');
         }
       };
+
+  if (error) {
     
+    return <ErrorPage/>
+    }
+       
+ 
+   
 
 
       const sortedArticles = sortArticles(ArticlesByTopic, sortBy, sortOrder);
-
+      
   
     return (
       <>

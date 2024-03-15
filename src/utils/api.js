@@ -17,7 +17,7 @@ const newsApi = axios.create({
         return newsApi
          .get(`/articles/${article_id}`).then((response)=>{
               return response.data.article
-         })
+         }) 
     }
  }
  export const getComments=(article_id)=>{

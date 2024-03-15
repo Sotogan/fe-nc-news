@@ -4,8 +4,9 @@ import { getArticles, getComments } from "../../utils/api.js";
 import Comments from "../Comments/Comments.jsx";
 import VoteButton from "../VoteButton./VoteButton.jsx";
 import PostComment from "../PostComment/PostComment.jsx";
+import ErrorPage from "../ErrorPage/ErrorPage.jsx";
 
-const SingleArticle = () => {
+const SingleArticle = ({error,setError}) => {
   const { article_id } = useParams();
 
   const [comments, setComments] = useState([]);
@@ -35,8 +36,14 @@ const SingleArticle = () => {
       setInitVotes(article.votes);
       setArticle(article);
       setIsLoading(false);
-    });
+    }).catch((err) => {
+      setError(err);
+        })
   }, []);
+
+  if (error) {
+    return <ErrorPage message={error} />;
+  }
 
   if (isLoading) return <p>LOADING.....</p>;
 

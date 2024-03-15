@@ -8,14 +8,20 @@ const Articles = ({sortBy,setSortBy,sortOrder,setSortOrder}) => {
   const [allArticles, setAllArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
-    setIsLoading(true);
+    
+      const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+  useEffect(() => {
     getArticles().then((articles) => {
       setAllArticles(articles);
-      setIsLoading(false);
-    });
-  }, []);
+      
+    })
+  }, [])
 
   const handleSort = (criteria) => {
     if (sortBy === criteria) {
@@ -24,12 +30,17 @@ const Articles = ({sortBy,setSortBy,sortOrder,setSortOrder}) => {
       setSortBy(criteria);
       setSortOrder('desc');
     }
-  };
-
+  }; 
   const sortedArticles = sortArticles(allArticles, sortBy, sortOrder);
+ 
+  
+  if (isLoading){ 
+  return( 
+    <div className="loading-screen">
+  <div className="spinner"></div>
+  <p>Loading...</p>
+</div>)}
 
-
-  if (isLoading) return <p>LOADING .....</p>;
 
   return (
     <div id="articles-container">
